@@ -8,6 +8,7 @@ public class TpModuleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TpModuleApplication.class, args);
+
 	}
 
 }
