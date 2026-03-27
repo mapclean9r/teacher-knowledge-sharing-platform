@@ -1,5 +1,6 @@
 package backend.application.tp_module.controllers;
 
+import backend.application.tp_module.models.dto.UserDto;
 import backend.application.tp_module.models.entities.User;
 import backend.application.tp_module.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -22,19 +23,35 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<User> authenticatedUser() {
+    public ResponseEntity<UserDto> authenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         User currentUser = (User) authentication.getPrincipal();
 
-        return ResponseEntity.ok(currentUser);
+        UserDto dto = UserDto.builder()
+                .userName(currentUser.getFullName())
+                .email(currentUser.getEmail())
+                .createdAt(currentUser.getCreatedAt())
+                .build();
+
+        return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<User>> allUsers() {
+    @GetMapping("")
+    public ResponseEntity<List<UserDto>> allUsers() {
         List <User> users = userService.allUsers();
 
-        return ResponseEntity.ok(users);
+        List<UserDto> dto = users.stream().map(
+                user ->
+                    UserDto.builder()
+                            .userName(user.getFullName())
+                            .email(user.getEmail())
+                            .createdAt(user.getCreatedAt())
+                            .build()
+        )
+                .toList();
+
+        return ResponseEntity.ok(dto);
     }
 
 }
