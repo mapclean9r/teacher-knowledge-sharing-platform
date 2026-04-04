@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import "@/styles/resource-filter.scss";
 import { Grade, getSchoolLevel } from "@/types/grades";
+import { allSubjects } from "@/types/subjects";
 
 interface ResourceFilterProps {
   subjects: string[];
@@ -39,14 +40,14 @@ export default function ResourceFilter({ subjects, onFilterChange }: ResourceFil
       </select>
 
       {/* Subject dropdown */}
-      <select value={subject} onChange={(e) => setSubject(e.target.value)}>
+        <select value={subject} onChange={(e) => setSubject(e.target.value)}>
         <option value="">All Subjects</option>
-        {subjects.map((s) => (
-          <option key={s} value={s}>
+        {allSubjects.map((s) => (
+            <option key={s} value={s}>
             {s}
-          </option>
+            </option>
         ))}
-      </select>
+        </select>
     </div>
   );
 }
