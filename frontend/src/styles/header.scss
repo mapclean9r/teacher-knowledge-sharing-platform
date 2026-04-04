@@ -1,0 +1,54 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .logo h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0070f3;
+    margin: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+
+    a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #0070f3;
+      }
+    }
+  }
+
+  .actions {
+    .login-btn {
+      padding: 6px 14px;
+      border: 2px solid #0070f3;
+      border-radius: 6px;
+      background: #fff;
+      color: #0070f3;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #0070f3;
+        color: #fff;
+      }
+    }
+  }
+}
